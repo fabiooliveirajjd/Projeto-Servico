@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml"
+	xmlns:sec="http://www.springframework.org/security/jsf/tags"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content">
+<style type="text/css">
+	.ui-panel {
+		margin-top: 20px
+	}
+</style>
+
+	<div class="ContainerIndent">
+
+		<p:panel id="panelConsulta">
+				<div class="Container">
+					<div class="Container100">
+						<div class="ContainerIndent">
+							<h:outputText value="Incluir cliente" styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
+						</div>
+					<div class="EmptyBox10"></div>
+
+					</div>
+					
+					<div class="ui-grid ui-grid-responsive">
+				
+					<div class="EmptyBox5"></div>
+						
+					<!-- Combo tipo de informativo -->
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-3">
+							<p:outputLabel id="labelNome" value="Nome: "  />
+						</div>
+						<div class="ui-grid-col-12">
+							<p:inputText id="imputNome" value="#{clienteController.cliente.nome}"  />
+						</div>
+					</div>
+					<div class="EmptyBox5"></div>
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-3">
+							<p:outputLabel id="labelCpf" value="CPF: "  />
+						</div>
+						<div class="ui-grid-col-12">
+							<p:inputText id="imputCpf" value="#{clienteController.cliente.cpf}"  />
+						</div>
+					</div>
+					<div class="EmptyBox5"></div>
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-3">
+							<p:outputLabel id="labeltelefone" value="Email: "  />
+						</div>
+						<div class="ui-grid-col-12">
+							<p:inputText id="imputtelefone" value="#{clienteController.cliente.email}"  />
+						</div>
+					</div>
+					<div class="EmptyBox5"></div>
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-3">
+							<p:outputLabel id="labelendereco" value="senha: "  />
+						</div>
+						<div class="ui-grid-col-12">
+							<p:inputText id="imputendereco" value="#{clienteController.cliente.senha}"  />
+						</div>
+					</div>
+						
+					
+					<div class="EmptyBox10"></div>
+					
+					<p:commandButton value=" Voltar " action="#{clienteController.salvar()}"  styleClass="CyanButton"  style="float:right;"  />
+					<p:commandButton value=" Salvar " action="#{clienteController.salvar()}" styleClass="CyanButton" style="float:right;"  />
+						
+					
+				</div>
+			</div>
+		</p:panel>
+				
+	
+			
+	</div>
+	</ui:define>
+</ui:composition>
+

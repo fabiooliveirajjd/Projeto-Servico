@@ -1,0 +1,65 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:form>
+		<div id="banner">
+<!-- 			<img src="resources/img/logocni.jpg" alt="" align="right" -->
+<!-- 				style="margin-right: 40px;" /> -->
+		</div>
+
+		<p:menubar>
+
+			<p:menuitem value="Início"
+				action="#{cargaEntidadeSindicalController.carregarInicialSistema}" />
+
+			<p:submenu label="CNES">
+
+				<p:submenu label="Operação">
+					<p:menuitem value="Entidade Sindical"
+						action="#{cargaEntidadeSindicalController.carregarEntSindical}" />
+				</p:submenu>
+
+				<p:submenu label="Administração">
+					<p:menuitem value="Log Execuções"
+						action="#{cargaEntidadeSindicalController.carregarLogEntSindical}" />
+					<p:menuitem value="Histórico de Execuções"
+						action="#{cargaEntidadeSindicalController.carregarStatusCargaCnes}" />
+					<p:menuitem value="Limpar Base"
+						action="#{cargaEntidadeSindicalController.carregarDeletarDadosCnes}" />
+				</p:submenu>
+
+			</p:submenu>
+
+			<p:submenu label="Mediador">
+				<p:submenu label="Operação">
+					<p:menuitem value="Instrumento Coletivo"
+						action="#{cargaInstrumentoColetivoController.carregarInstColetivo}" />
+					<p:menuitem value="Instrumento Coletivo Diário"
+						action="#{cargaInstrumentoColetivoController.carregarInstColetivoDiario}" />
+					<p:menuitem value="Carga Municipios IBGE"
+						action="#{cargaInstrumentoColetivoController.carregarDadosIbge}" />
+					<p:menuitem value="Integar Municípios com os Instrumentos Coletivos"
+						action="#{cargaInstrumentoColetivoController.carregarIntegrarDados}" />
+				</p:submenu>
+
+				<p:submenu label="Administração">
+					<p:menuitem value="Consultar Log Execuções"
+						action="#{cargaInstrumentoColetivoController.carregarLogInstColetivo}" />
+					<p:menuitem value="Consultar Log de Cargas"
+						action="#{cargaInstrumentoColetivoController.carregarLogCargaInstColetivo}" />
+					<p:menuitem value="Histórico de Execuções"
+						action="#{cargaInstrumentoColetivoController.carregarStatusCargaMediador}" />
+					<p:menuitem value="Limpar Base"
+						action="#{cargaInstrumentoColetivoController.carregarDeletarDadosMediador}" />
+				</p:submenu>
+
+			</p:submenu>
+
+		</p:menubar>
+	</h:form>
+</ui:composition>
+
+

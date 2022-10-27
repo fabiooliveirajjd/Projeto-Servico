@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<div id="layout-header" class="Unselectable fontRegular">
+	
+		<a href="" id="layout-logo"> <span
+			class="Fs19 FontTitilliumSemiBoldItalic Fleft"><span
+				class="softblue">SIGA</span><span class="hardblue"> - Sistema
+					Integrado de Gestão de Arrecadação</span></span>
+		</a>
+
+		<a id="layout-logout" href="/siga/logout" class="fontRegular blue">
+			<i class="icon-logout icon-right-fat MarRight5"></i> SAIR
+		</a>
+	
+		<h:outputScript name="suporte.js" library="js" />
+
+		<!-- NEVER REMOVE FOLLOWING 'UL' TAG ! BECAUSE THIS CONTAINS RESPONSIVE MODE HEADER MENU OPEN-CLOSE BUTTON -->
+		<ul id="sm-mobiletopmenu" class="layout-header-widgets white Fs14">
+			<li
+				class="Fleft BordRadHalf TexAlCenter Animated05 DisplayOnResponsive"><i
+				class="icon-th-1"></i></li>
+		</ul>
+		<!-- ****** -->
+	</div>
+
+</ui:composition>
