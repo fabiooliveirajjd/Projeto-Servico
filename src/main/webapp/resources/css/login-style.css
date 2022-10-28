@@ -1,0 +1,101 @@
+html { height: 100% !important; }
+
+body{
+  	background-color: #FFFFFF;
+  	height: 100% !important;
+}
+
+.ui-widget {
+    font-size: 18px !important;
+}
+
+.ui-widget-header {
+	background: #FFFFFF !important;
+}
+
+.ui-widget-content {
+	border: 0px !important;
+}
+
+IMG.imgLoginCni{
+	margin-left: 45px;
+	margin-top: 30px;
+}
+
+IMG.imgLoginSiga{
+	margin-left: 30px;
+	margin-top: 20px;
+}
+
+.ui-widget-overlay {
+	
+	background: #FFFFFF !important;
+	
+}
+
+.labelLogin {
+	font-size: 12px !important;
+	color: #0A5598 !important;
+	
+}
+
+.panelGridLogin{
+	float: right !important;
+}
+
+.panelGridLoginLeft{
+	float: left;
+}
+
+.bottonLogin {
+	float: right;
+}
+
+/* ----------------- !!!!!!!!!!! Ajustes layout siga !!!!!!!!!!! -------------------*/
+/* ----------------- !!!!!!!!!!! Ajustes layout siga !!!!!!!!!!! -------------------*/
+/* ----------------- !!!!!!!!!!! Ajustes layout siga !!!!!!!!!!! -------------------*/
+
+.login-tl {
+	background-image: url("#{resource['img/bg_siga.png']}") !important;
+	background-repeat: no-repeat !important;
+	background-width: cover !important;
+}
+
+#login-logo {
+    width: 380px  !important;
+    height: 205px !important;
+    display: inline-block !important;
+    text-indent: -9000000px !important;
+    margin-bottom: 15px !important;
+    background-image:  url("#{resource['img/logo_login.PNG']}") !important;
+    background-repeat: no-repeat !important;
+    background-position: -4px -4px !important;
+    text-indent: -99999px !important;
+}
+#login-logo-synd {
+    width: 338px  !important;
+    height: 75px !important;
+    display: inline-block !important;
+    text-indent: -9000000px !important;
+    margin-bottom: 15px !important;
+    background-image:  url("#{resource['img/sprites_synd.png']}") !important;
+    background-repeat: no-repeat !important;
+    background-position: 0px 6px !important;
+    text-indent: -99999px !important;
+}
+
+#login-logo span { text-indent: -900000px !important; display: none !important; }
+
+table#gridMsg {
+    width: 86%  !important;
+    margin: 0 7%  !important;
+}
+
+.MaxHeight80{max-height:80% !important;
+
+}
+
+
+/* ----------------- !!!!!!!!!!! Ajustes layout siga !!!!!!!!!!! -------------------*/
+/* ----------------- !!!!!!!!!!! Ajustes layout siga !!!!!!!!!!! -------------------*/
+/* ----------------- !!!!!!!!!!! Ajustes layout siga !!!!!!!!!!! -------------------*/

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,14 +24,15 @@ public class ClienteDAO {
 		try {
 			con = ConectaPostgres.criarConexao();
 			PreparedStatement ps = null;
-			ps = con.prepareStatement("INSERT INTO servico.Cliente (nome, cpf, email, senha, dataCriacao) VALUES (?,?,?,?,?) ");
+			ps = con.prepareStatement("INSERT INTO cliente (nome, cpf, email, senha, dataCriacao) VALUES (?,?,?,?,?) ");
 			
 			ps.setString(1, cliente.getNome());
 			ps.setString(2, cliente.getCpf());
 			ps.setString(3, cliente.getEmail());
 			ps.setString(4, cliente.getSenha());
 			
-			java.sql.Timestamp data = new Timestamp(cliente.getDataCriacao().getTime());
+//			java.sql.Timestamp data = new Timestamp(cliente.getDataCriacao().getTime());
+			java.sql.Timestamp data = new Timestamp(new Date().getTime());
 			ps.setTimestamp(5, data);
 			
 			ps.executeUpdate();
