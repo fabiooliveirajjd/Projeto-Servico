@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml"
+	xmlns:sec="http://www.springframework.org/security/jsf/tags"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content">
+<style type="text/css">
+	.ui-panel {
+		margin-top: 20px
+	}
+</style>
+
+	<div class="ContainerIndent">
+
+		<p:panel id="panelConsulta">
+				<div class="Container">
+					<div class="Container100">
+						<div class="ContainerIndent">
+							<h:outputText value="Manter Cliente" styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
+						</div>
+					<div class="EmptyBox10"></div>
+
+					</div>
+					
+					<div class="ui-grid ui-grid-responsive">
+				
+					<div class="EmptyBox5"></div>
+						
+					<!-- Combo tipo de informativo -->
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-3">
+							<p:outputLabel id="labelNome" value="Nome Cliente: "  />
+						</div>
+						<div class="ui-grid-col-3">
+							<p:inputText id="imputNome" value="#{clienteController.cliente.nome}"  />
+						</div>
+					</div>
+						<div class="EmptyBox5"></div>
+
+						
+						<p:commandButton value=" Novo " action="#{clienteController.incluir()}"  styleClass="CyanButton" style="float:right;"  />
+						<p:commandButton value=" Pesquisar " action="#{clienteController.pesquisarTodosClientes()}" update="tableCliente" styleClass="CyanButton"  style="float:right;"  />
+						
+					
+					<div class="EmptyBox10"></div>
+					
+						<p:panel id="panelResultado">
+				
+							<div class="ContainerIndent">
+					
+									<p:dataTable id="tableCliente" var="cliente" paginator="true" 
+									rows="10" paginatorPosition="bottom" emptyMessage="Nenhum registro foi encontrado para os parâmetros informados."
+									value="#{clienteController.clientes}" >
+										<f:facet name="header">
+		                                	Dados do Cliente
+		                            	</f:facet>
+								
+									    <p:column headerText="Nome">
+									        <h:outputText value="#{cliente.nome}" />
+									    </p:column>
+									 
+									    <p:column headerText="CPF">
+									        <h:outputText value="#{cliente.cpf}" />
+									    </p:column>
+									 
+									    <p:column headerText="Endereço">
+									        <h:outputText value="#{cliente.email}" />
+									    </p:column>
+									    
+									    <p:column style="width:33px;text-align: center">
+											<p:commandButton id="btnAlterar" action="#{clienteController.redirecionaAlterar(cliente)}"  icon="ui-icon-pencil" title="Alterar Cliente"
+											  styleClass="BlueButton" />
+										</p:column>
+										<p:column style="width:33px;text-align: center">
+											<p:commandButton action="#{clienteController.excluir(cliente)}" icon=" ui-icon-trash" title="Excluir Cliente"
+												immediate="true" update="@all"  ajax="false" styleClass="BlueDarkButton"/>
+										</p:column>
+										 
+									</p:dataTable>
+								</div>
+							</p:panel>
+									
+								</div>
+							</div>
+							
+		</p:panel>
+				
+	
+			
+	</div>
+	</ui:define>
+</ui:composition>

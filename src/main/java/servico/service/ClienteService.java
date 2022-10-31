@@ -19,20 +19,21 @@ public class ClienteService {
 		dao.salvar(cliente);
 	}
 	
-	public Cliente alterar(Cliente cliente) {
-		return dao.alterar(cliente);
-	}
-
-	public void deletar(Cliente cliente) {
-		dao.deletar(cliente);
-	}
-
-	public  List<Cliente> pesquisarAll() {
-		return dao.pesquisarAll();
+	public void excluir(Cliente cliente) {
+		dao.excluir(cliente);
 	}
 	
-	public List<Cliente> pesquisarPorId(Long idCliente) {
-		return dao.pesquisarPorId(idCliente);
+	public void alterar(Cliente cliente) {
+		dao.alterar(cliente);
+	}
+
+	
+	public List<Cliente> pesquisarTodosClientes() {
+		return dao.pesquisarTodosClientes();
+	}
+	
+	public List<Cliente> pesquisarPorNome(Cliente cliente) {
+		return dao.pesquisarPorNome(cliente);
 	}
 
 }
