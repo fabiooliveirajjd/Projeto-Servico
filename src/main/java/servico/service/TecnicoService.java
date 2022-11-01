@@ -12,26 +12,29 @@ import servico.entidade.Tecnico;
 
 @Service
 public class TecnicoService {
-
+	
+	
 	@Inject
 	private TecnicoDAO dao;
 	
 	public void salvar (Tecnico tecnico) {
 		dao.salvar(tecnico);	
 	}
-	
-	public Tecnico alterar (Tecnico tecnico) {
-		return dao.alterar(tecnico);
+	public void excluir(Tecnico tecnico) {
+		dao.excluir(tecnico);
 	}
 	
-	public void deletar (Tecnico tecnico) {
-		dao.deletar(tecnico);
+	public void alterar(Tecnico tecnico) {
+		dao.alterar(tecnico);
 	}
-	public List<Tecnico> pesquisarAll(){
-		return dao.pesquisarAll();
-	}
-	public List<Tecnico> pesquisarporId(Long idTecnico){
-		return pesquisarporId(idTecnico);
+
+	
+	public List<Tecnico> pesquisarTodosTecnicos() {
+		return dao.pesquisarTodosTecnicos();
 	}
 	
+	public List<Tecnico> pesquisarPorNome(Tecnico tecnico) {
+		return dao.pesquisarPorNome(tecnico);
+	}
+
 }

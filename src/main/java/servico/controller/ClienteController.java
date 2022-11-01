@@ -18,7 +18,7 @@ public class ClienteController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private static final String CONSULTAR = "/paginas/configurarCliente/pesquisarCliente.xhtml";
-	private static final String INCLUIR = "/paginas/configurarCliente/configurarCliente.xhtml";
+	private static final String INCLUIR = "/paginas/configurarCliente/incluirCliente.xhtml";
 	private static final String ALTERAR = "/paginas/configurarCliente/alterarCliente.xhtml";
 
 	private Cliente cliente = new Cliente();
@@ -34,13 +34,6 @@ public class ClienteController implements Serializable {
 	}
 
 	public String salvar() {
-		
-			
-//		Cliente c = clienteService.pesquisarPorCpf(cliente.getCpf());
-//		if(c != null) {
-//			//popup "cpf ja existe, coloque outro"
-//		}
-		
 		clienteService.salvar(cliente);
 		cliente = new Cliente();
 		clientes = new ArrayList<>();
@@ -80,12 +73,12 @@ public class ClienteController implements Serializable {
 
 	public String pesquisarTodosClientes() {
 		clientes = new ArrayList<>();
-		if(cliente != null && !cliente.getNome().equals("")) {
+		if (cliente != null && !cliente.getNome().equals("")) {
 			pesquisarPorNome(cliente);
-		}else {
+		} else {
 			clientes = clienteService.pesquisarTodosClientes();
 		}
-		
+
 		return "";
 
 	}
