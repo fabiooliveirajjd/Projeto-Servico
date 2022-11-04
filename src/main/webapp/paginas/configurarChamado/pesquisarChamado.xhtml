@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml"
+	xmlns:sec="http://www.springframework.org/security/jsf/tags"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content">
+<style type="text/css">
+	.ui-panel {
+		margin-top: 20px
+	}
+</style>
+
+	<div class="ContainerIndent">
+
+		<p:panel id="panelConsulta">
+				<div class="Container">
+					<div class="Container100">
+						<div class="ContainerIndent">
+							<h:outputText value="Lista de Chamado" styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
+						</div>
+					<div class="EmptyBox10"></div>
+
+					</div>
+					
+					<div class="ui-grid ui-grid-responsive">
+				
+					<div class="EmptyBox5"></div>
+						
+					<!-- Combo tipo de informativo -->
+					<!-- <div class="ui-grid-row">
+						<div class="ui-grid-col-3">
+							<p:outputLabel id="labelNome" value="Pesquisar chamado por Cliente: "  />
+						</div>
+						<div class="ui-grid-col-3">
+							<p:inputText id="imputNome" value="#{chamadoController.cliente.nome}"  />
+						</div>
+					</div> -->
+					
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-3">
+							<p:outputLabel id="labelNom" value="Tecnico: "  />
+						</div>
+						<div class="ui-grid-col-3">
+							<p:selectOneMenu id="selectec"
+									value="#{chamadoController.chamado.idTecnico}"
+									style="width:208px">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{chamadoController.tecnicos}" var="t"
+										itemLabel="#{t.nome}" itemValue="#{t.idTecnico}" />
+								</p:selectOneMenu>
+						</div>
+					</div>
+					
+					
+						<div class="EmptyBox5"></div>
+
+						
+						<p:commandButton value=" Novo " action="#{chamadoController.incluir()}"  styleClass="CyanButton" style="float:right;"  />
+						<p:commandButton value=" Pesquisar " action="#{chamadoController.pesquisarPorTecnicoEClinte()}" update="tableChamado" styleClass="CyanButton"  style="float:right;"  />
+						
+					
+					<div class="EmptyBox10"></div>
+					
+						<p:panel id="panelResultado">
+				
+							<div class="ContainerIndent">
+					
+									<p:dataTable id="tableChamado" var="chamado" paginator="true" 
+									rows="10" paginatorPosition="bottom" emptyMessage="Nenhum registro foi encontrado para os parâmetros informados."
+									value="#{chamadoController.chamados}" >
+										<f:facet name="header">
+		                                	Chamados
+		                            	</f:facet>
+								
+									    <p:column headerText="Cliente">
+									        <h:outputText value="#{chamado.nomeCliente}" />
+									    </p:column>
+									    
+									    <p:column headerText="Tecnico">
+									        <h:outputText value="#{chamado.nomeTecnico}" />
+									    </p:column>
+									 
+									    <p:column headerText="Prioridade">
+									        <h:outputText value="#{chamado.prioridade}" />
+									    </p:column>
+									    
+									    <p:column headerText="Status">
+									        <h:outputText value="#{chamado.status}" />
+									    </p:column>
+									    
+									     <p:column headerText="Data de abertura">
+									        <p:calendar id="imputInicial" value="#{chamado.dataAbertura}" pattern="dd/MM/yyyy" mask="true" disabled="true"  />
+									    </p:column>
+									    
+									     <p:column headerText="Data de fechamento">
+									        <p:calendar id="imputFecha" value="#{chamado.dataFechamento}" pattern="dd/MM/yyyy" mask="true" disabled="true"  />
+									        
+									    </p:column>
+									    
+									     <p:column headerText="Título">
+									        <h:outputText value="#{chamado.titulo}" />
+									    </p:column>
+									    
+									  <!--   <p:column headerText="Observações">
+									        <h:outputText value="#{chamado.observacoes}" />
+									    </p:column> -->
+									    
+									   
+									    
+								
+										<p:column style="width:33px;text-align: center">
+											<p:commandButton action="#{chamadoController.excluir(chamado)}" icon=" ui-icon-pencil" title="Alterar Chamado"
+												immediate="true" update="@all"  ajax="false" styleClass="BlueButton"/>
+										</p:column>
+										<p:column style="width:33px;text-align: center">
+											<p:commandButton action="#{chamadoController.excluir(chamado)}" icon=" ui-icon-trash" title="Excluir Chamado"
+												immediate="true" update="@all"  ajax="false" styleClass="BlueDarkButton"/>
+										</p:column>
+									 
+							</p:dataTable>
+						</div>
+					</p:panel>								
+				</div>
+	 		</div>						
+		  </p:panel>							
+	   </div>
+	</ui:define>
+</ui:composition>

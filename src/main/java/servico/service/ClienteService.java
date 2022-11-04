@@ -36,4 +36,12 @@ public class ClienteService {
 		return dao.pesquisarPorNome(cliente);
 	}
 
+	public String pesquisarPorId(Integer idCliente) {
+		return dao.pesquisarPorId(idCliente);
+	}
+
+	public Integer pesquisarClientePorNome(Cliente cliente) {
+		return dao.pesquisarClientePorNome(cliente);
+	}
+
 }

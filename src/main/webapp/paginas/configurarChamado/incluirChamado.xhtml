@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml"
+	xmlns:sec="http://www.springframework.org/security/jsf/tags"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content">
+		<style type="text/css">
+.ui-panel {
+	margin-top: 20px
+}
+</style>
+
+		<div class="ContainerIndent">
+
+			<p:panel id="panelConsulta">
+				<div class="Container">
+					<div class="Container100">
+						<div class="ContainerIndent">
+							<h:outputText value="Incluir Chamado"
+								styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
+						</div>
+						<div class="EmptyBox10"></div>
+
+					</div>
+
+					<div class="ui-grid ui-grid-responsive">
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelCli" value="Cliente: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:selectOneMenu id="selectCli"
+									value="#{chamadoController.chamado.idCliente}"
+									style="width:208px">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{chamadoController.clientes}" var="c"
+										itemLabel="#{c.nome}" itemValue="#{c.idCliente}" />
+								</p:selectOneMenu>
+							</div>
+						</div>
+
+
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labeltec" value="Tecnico: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:selectOneMenu id="selectec"
+									value="#{chamadoController.chamado.idTecnico}"
+									style="width:208px">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{chamadoController.tecnicos}" var="t"
+										itemLabel="#{t.nome}" itemValue="#{t.idTecnico}" />
+								</p:selectOneMenu>
+							</div>
+						</div>
+
+
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelNome" value="Prioridade: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:selectOneMenu id="selectTec"
+									value="#{chamadoController.prioridade}" style="width:208px">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{chamadoController.prioridades}" var="p"
+										itemLabel="#{p.descricao}" itemValue="#{p}" />
+								</p:selectOneMenu>
+							</div>
+						</div>
+
+
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelStat" value="Status: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:selectOneMenu id="selectStatus"
+									value="#{chamadoController.status}" style="width:208px">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{chamadoController.listStatus}" var="s"
+										itemLabel="#{s.descricao}" itemValue="#{s}" />
+								</p:selectOneMenu>
+							</div>
+						</div>
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelendereco" value="Título: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:inputText id="imputendereco"
+									value="#{chamadoController.chamado.titulo}" />
+							</div>
+						</div>
+
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labeltelefone" value="Observações: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:inputTextarea id="imputtelefone" rows="5" cols="30" autoResize="false"
+									value="#{chamadoController.chamado.observacoes}" />
+							</div>
+						</div>
+
+
+
+						<div class="EmptyBox10"></div>
+
+						<p:commandButton value=" Voltar "
+							action="#{chamadoController.salvar()}" styleClass="CyanButton"
+							style="float:right;" />
+						<p:commandButton value=" Salvar "
+							action="#{chamadoController.salvar()}" styleClass="CyanButton"
+							style="float:right;" update="@all"/>
+
+
+					</div>
+				</div>
+			</p:panel>
+
+		</div>
+	</ui:define>
+</ui:composition>

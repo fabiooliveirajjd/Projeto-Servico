@@ -36,5 +36,13 @@ public class TecnicoService {
 	public List<Tecnico> pesquisarPorNome(Tecnico tecnico) {
 		return dao.pesquisarPorNome(tecnico);
 	}
+	
+	public String pesquisarPorId(Integer idTecnico) {
+		return dao.pesquisarPorId(idTecnico);
+	}
+	public Integer pesquisarTecnicoPorNome(Tecnico tecnico) {
+		return dao.pesquisarTecnicoPorNome(tecnico);
+	}
+
 
 }

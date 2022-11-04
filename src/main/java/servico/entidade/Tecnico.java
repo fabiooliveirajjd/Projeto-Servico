@@ -17,7 +17,7 @@ private static final long serialVersionUID = 1L;
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer idTecnico;
 	
 	@Column
 	private String nome;
@@ -34,14 +34,15 @@ private static final long serialVersionUID = 1L;
 	
 //	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataCriacao;
+	
 
 	public Tecnico() {
 		super();
 	}
 
-	public Tecnico(Integer id, String nome, String cpf, String email, String senha, Date dataCriacao) {
+	public Tecnico(Integer idTecnico, String nome, String cpf, String email, String senha, Date dataCriacao) {
 		super();
-		this.id = id;
+		this.idTecnico = idTecnico;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
@@ -49,12 +50,12 @@ private static final long serialVersionUID = 1L;
 		this.dataCriacao = dataCriacao;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdTecnico() {
+		return idTecnico;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdTecnico(Integer idTecnico) {
+		this.idTecnico = idTecnico;
 	}
 
 	public String getNome() {
