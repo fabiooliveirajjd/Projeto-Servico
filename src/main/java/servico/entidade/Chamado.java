@@ -1,6 +1,7 @@
 package servico.entidade;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -53,12 +54,15 @@ public class Chamado implements Serializable{
 	@Transient
 	private String nomeTecnico;
 	
+	@Column
+	private BigDecimal valor;
+	
 	public Chamado() {
 		super();
 	}
 
 	public Chamado(Integer idChamado, Prioridade prioridade, Status status, String observacoes, String titulo,  Integer idTecnico,
-			Integer idCliente) {
+			Integer idCliente, BigDecimal valor) {
 		super();
 		this.idChamado = idChamado;
 		this.prioridade = prioridade;
@@ -67,6 +71,17 @@ public class Chamado implements Serializable{
 		this.titulo = titulo;
 		this.idTecnico = idTecnico;
 		this.idCliente = idCliente;
+		this.valor = valor;
+		
+	}
+
+	
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
 
 	public Integer getIdChamado() {

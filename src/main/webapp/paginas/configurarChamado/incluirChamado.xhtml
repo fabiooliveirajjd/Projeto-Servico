@@ -106,6 +106,18 @@
 									value="#{chamadoController.chamado.titulo}" />
 							</div>
 						</div>
+						
+					<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelvalor" value="Valor:  " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:inputText id="imputvalor"
+									value="#{chamadoController.chamado.valor}" />
+							</div>
+						</div>
+						
 
 
 						<div class="EmptyBox5"></div>
@@ -124,7 +136,7 @@
 						<div class="EmptyBox10"></div>
 
 						<p:commandButton value=" Voltar "
-							action="#{chamadoController.salvar()}" styleClass="CyanButton"
+							action="#{chamadoController.voltar()}" styleClass="CyanButton"
 							style="float:right;" />
 						<p:commandButton value=" Salvar "
 							action="#{chamadoController.salvar()}" styleClass="CyanButton"

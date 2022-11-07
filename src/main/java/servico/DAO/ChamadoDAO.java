@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 
 import servico.entidade.Chamado;
-import servico.entidade.Cliente;
 import servico.enuns.Prioridade;
 import servico.enuns.Status;
 
@@ -23,8 +22,8 @@ public class ChamadoDAO {
 			con = ConectaPostgres.criarConexao();
 			PreparedStatement ps = null;
 			ps = con.prepareStatement("INSERT INTO Chamado "
-					+ "(id_cliente, id_tecnico, prioridade, status, observacoes, titulo, dataAbertura )"
-					+ " VALUES (?,?,?,?,?,?,?) ");
+					+ "(id_cliente, id_tecnico, prioridade, status, observacoes, titulo, valor, dataAbertura )"
+					+ " VALUES (?,?,?,?,?,?,?,?) ");
 
 			ps.setInt(1, chamado.getIdCliente());
 			ps.setInt(2, chamado.getIdTecnico());
@@ -32,12 +31,13 @@ public class ChamadoDAO {
 			ps.setInt(4, chamado.getStatus().getCodigo());
 			ps.setString(5, chamado.getObservacoes());
 			ps.setString(6, chamado.getTitulo());
-
+			ps.setBigDecimal(7, chamado.getValor());
 			java.sql.Timestamp dataAbertura = new Timestamp(new Date().getTime());
-			ps.setTimestamp(7, dataAbertura);
+			ps.setTimestamp(8, dataAbertura);
+			
 
-//				java.sql.Timestamp dataFechamento = new Timestamp(new Date().getTime());
-//				ps.setTimestamp(8, dataFechamento);
+	//			java.sql.Timestamp dataFechamento = new Timestamp(new Date().getTime());
+	//		ps.setTimestamp(8, dataFechamento);
 
 			ps.executeUpdate();
 
@@ -76,6 +76,8 @@ public class ChamadoDAO {
 				
 				chamado.setObservacoes(rs.getString("observacoes"));
 				chamado.setTitulo(rs.getString("titulo"));
+				chamado.setValor(rs.getBigDecimal("valor"));
+				
 				
 				
 				lista.add(chamado);
@@ -129,6 +131,8 @@ public class ChamadoDAO {
 					chamado.setStatus(Status.toEnum(rs.getInt("status")));  
 //					chamado.setObservacoes(rs.getString("observacoes"));
 					chamado.setTitulo(rs.getString("titulo"));
+				chamado.setValor(rs.getBigDecimal("valor"));
+				
 					
 					lista.add(chamado);
 	            } 
@@ -155,7 +159,7 @@ public class ChamadoDAO {
 			PreparedStatement ps = null;
 
 			ps = con.prepareStatement("DELETE FROM chamado as c where c.idChamado = ? ");
-			ps.setInt(1, chamado.getIdChamado());;
+			ps.setInt(1, chamado.getIdChamado());
 			ps.executeUpdate();
 
 		} catch (Exception e) {
@@ -172,4 +176,38 @@ public class ChamadoDAO {
 
 	}
 
-}
+	public void alterar(Chamado chamado) {
+		Connection con = null;
+		try {
+			con = ConectaPostgres.criarConexao();
+	        PreparedStatement ps = null;
+	        
+	        ps = con.prepareStatement("UPDATE Chamado  SET status = ?, dataFechamento = ?"
+	        + " WHERE idChamado = ? ");
+	             
+	        ps.setInt(1, chamado.getStatus().getCodigo());
+	        
+	        if(chamado.getDataFechamento() != null) {
+	        	java.sql.Date dataSql = new java.sql.Date(chamado.getDataFechamento().getTime());
+	        	ps.setDate(2, dataSql );     
+	        }else {
+	        	ps.setDate(2, null );     
+	        }
+	        
+	        ps.setInt(3, chamado.getIdChamado());
+	
+			 ps.executeUpdate();
+	            
+	            
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }}}
+     

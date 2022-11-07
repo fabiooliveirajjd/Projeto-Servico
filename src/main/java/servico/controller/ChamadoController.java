@@ -2,6 +2,7 @@ package servico.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +26,7 @@ public class ChamadoController implements Serializable {
 	
 	private static final String CONSULTAR = "/paginas/configurarChamado/pesquisarChamado.xhtml";
 	private static final String INCLUIR = "/paginas/configurarChamado/incluirChamado.xhtml";
+	private static final String ALTERAR = "/paginas/configurarChamado/alterarChamado.xhtml";
 
 	private Chamado chamado = new Chamado();
 	private List<Chamado> chamados;
@@ -54,15 +56,14 @@ public class ChamadoController implements Serializable {
 		setListStatus(Status.values());
 		cliente = new Cliente();
 		tecnico = new Tecnico();
+		status = null;
+		prioridade = null;
+
 
 	}
 
 	public String salvar() {
-		
-	//	if() {
-			
-	//	}
-		
+
 		chamado.setPrioridade(prioridade);
 		chamado.setStatus(status);
 		chamadoService.salvar(chamado);
@@ -83,6 +84,35 @@ public class ChamadoController implements Serializable {
 		chamado = new Chamado();
 		pesquisarTodosChamados();
 		return CONSULTAR;
+	}
+	
+	public String redirecionaAlterar(Chamado chamado) {
+		setStatus(chamado.getStatus());
+		setPrioridade(chamado.getPrioridade());
+		setChamado(chamado);
+		return ALTERAR;
+	}
+	
+	public String alterar() {
+		
+		if(status.getCodigo().equals(Status.ENCERRADO.getCodigo())) {
+			chamado.setDataFechamento(new Date());
+		}	
+		
+		chamado.setStatus(getStatus());
+		chamadoService.alterar(chamado);
+		chamado = new Chamado();
+		chamados = new ArrayList<>();
+		return CONSULTAR;
+		
+	}
+
+	
+	public String voltar() {
+		chamado = new Chamado();
+		chamados = new ArrayList<>();
+		return CONSULTAR;
+		
 	}
 	
 	public void pesquisarTodosChamados() {

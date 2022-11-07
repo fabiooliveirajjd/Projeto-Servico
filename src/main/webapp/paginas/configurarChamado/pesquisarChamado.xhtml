@@ -43,7 +43,7 @@
 					
 					<div class="ui-grid-row">
 						<div class="ui-grid-col-3">
-							<p:outputLabel id="labelNom" value="Tecnico: "  />
+							<p:outputLabel id="labelNom" value="Pesquisar Chamado por Tecnico: "  />
 						</div>
 						<div class="ui-grid-col-3">
 							<p:selectOneMenu id="selectec"
@@ -106,16 +106,16 @@
 									        <h:outputText value="#{chamado.titulo}" />
 									    </p:column>
 									    
-									  <!--   <p:column headerText="Observações">
-									        <h:outputText value="#{chamado.observacoes}" />
-									    </p:column> -->
+									     <p:column headerText="Valor">
+									        <h:outputText value="#{chamado.valor}" />
+									    </p:column> 
 									    
 									   
 									    
 								
 										<p:column style="width:33px;text-align: center">
-											<p:commandButton action="#{chamadoController.excluir(chamado)}" icon=" ui-icon-pencil" title="Alterar Chamado"
-												immediate="true" update="@all"  ajax="false" styleClass="BlueButton"/>
+											<p:commandButton action="#{chamadoController.redirecionaAlterar(chamado)}" icon=" ui-icon-pencil" title="Alterar Chamado"
+												 styleClass="BlueButton"/>
 										</p:column>
 										<p:column style="width:33px;text-align: center">
 											<p:commandButton action="#{chamadoController.excluir(chamado)}" icon=" ui-icon-trash" title="Excluir Chamado"

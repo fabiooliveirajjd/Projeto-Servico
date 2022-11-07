@@ -22,8 +22,13 @@ public class ChamdoService {
 	
 	public void excluir(Chamado chamado) {
 		dao.excluir(chamado);
+		
 	}
-
+	
+	public void alterar(Chamado chamado) {
+		    dao.alterar(chamado);
+	}
+	
 	public List<Chamado> pesquisarTodosChamados(){
 		return dao.pesquisarTodosChamados();
 		

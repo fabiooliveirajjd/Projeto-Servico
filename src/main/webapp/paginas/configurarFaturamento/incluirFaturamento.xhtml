@@ -19,7 +19,7 @@
 				<div class="Container">
 					<div class="Container100">
 						<div class="ContainerIndent">
-							<h:outputText value="alterar cliente" styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
+							<h:outputText value="Incluir cliente" styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
 						</div>
 					<div class="EmptyBox10"></div>
 
@@ -69,12 +69,8 @@
 					
 					<div class="EmptyBox10"></div>
 					
-					<p:commandButton value=" Voltar " 
-					action="#{clienteController.voltar()}"  styleClass="CyanButton" 
-					 style="float:right;"  />
-					<p:commandButton value=" Salvar " 
-					action="#{clienteController.alterar()}" styleClass="CyanButton"
-					 style="float:right;"  />
+					<p:commandButton value=" Voltar " action="#{clienteController.salvar()}"  styleClass="CyanButton"  style="float:right;"  />
+					<p:commandButton value=" Salvar " action="#{clienteController.salvar()}" styleClass="CyanButton" style="float:right;"  />
 						
 					
 				</div>

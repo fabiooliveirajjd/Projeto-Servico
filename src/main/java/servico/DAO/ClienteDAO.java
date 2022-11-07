@@ -26,8 +26,7 @@ public class ClienteDAO {
 		try {
 			con = ConectaPostgres.criarConexao();
 			PreparedStatement ps = null;
-			ps = con.prepareStatement(
-					"INSERT INTO Cliente (nome, cpf, email, senha, dataCriacao)" + " VALUES (?,?,?,?,?) ");
+			ps = con.prepareStatement("INSERT INTO Cliente (nome, cpf, email, senha, dataCriacao)" + " VALUES (?,?,?,?,?) ");
 
 			ps.setString(1, cliente.getNome());
 			ps.setString(2, cliente.getCpf());
@@ -115,8 +114,8 @@ public class ClienteDAO {
 			con = ConectaPostgres.criarConexao();
 	        PreparedStatement ps = null;
 	        
-	            ps = con.prepareStatement("UPDATE Cliente SET nome = ? , cpf = ?, email = ?, senha = ? "
-	            		+ "WHERE idCliente = ? ");
+	            ps = con.prepareStatement("UPDATE Cliente SET nome = ? , cpf = ?, email = ?,"
+	            		+ " senha = ? " + "WHERE idCliente = ? ");
 	            
 	            ps.setString(1, cliente.getNome());
 				ps.setString(2, cliente.getCpf());
