@@ -12,7 +12,7 @@
 	margin-top: 20px
 }
 </style>
-
+ 
 		<div class="ContainerIndent">
 
 			<p:panel id="panelConsulta">
@@ -35,10 +35,11 @@
 							</div>
 							<div class="ui-grid-col-12">
 								<p:selectOneMenu id="selectec"
-									value="#{chamadoController.chamado.idTecnico}"
+									value="#{faturamentoController.faturamento.idTecnico}"
+							
 									style="width:208px">
 									<f:selectItem itemLabel="Selecione" itemValue="" />
-									<f:selectItems value="#{chamadoController.tecnicos}" var="t"
+									<f:selectItems value="#{faturamentoController.tecnicos}" var="t"
 										itemLabel="#{t.nome}" itemValue="#{t.idTecnico}" />
 								</p:selectOneMenu>
 							</div>
@@ -51,10 +52,10 @@
 							</div>
 							<div class="ui-grid-col-12">
 								<p:selectOneMenu id="selectCli"
-									value="#{chamadoController.chamado.idCliente}"
+									value="#{faturamentoController.faturamento.idCliente}"
 									style="width:208px">
 									<f:selectItem itemLabel="Selecione" itemValue="" />
-									<f:selectItems value="#{chamadoController.clientes}" var="c"
+									<f:selectItems value="#{faturamentoController.clientes}" var="c"
 										itemLabel="#{c.nome}" itemValue="#{c.idCliente}" />
 								</p:selectOneMenu>
 							</div>
@@ -66,21 +67,20 @@
 								<p:outputLabel id="labelenderec" value="Data início de faturamento: " />
 							</div>
 							<div class="ui-grid-col-12">							
-										<p:calendar value="#{calendarBean.date2}" />	
+										<p:calendar value="#{faturamentoController.faturamento.dataInicioFaturamento}" />	
 							</div>
 						</div>
 						
 						<div class="EmptyBox5"></div>
 						<div class="ui-grid-row">
 							<div class="ui-grid-col-3">
-								<p:outputLabel id="labelendereco" value="Data fim de  faturamento: " />
+								<p:outputLabel id="labelendereco" value="Data fim de faturamento: " />
 							</div>
 							<div class="ui-grid-col-12">							
-										<p:calendar value="#{calendarBean.date2}" />	
+										<p:calendar value="#{faturamentoController.faturamento.dataFimFaturamento}" />	
 							</div>
 						</div>
-						
-						
+											
 					<div class="EmptyBox5"></div>
 						<div class="ui-grid-row">
 							<div class="ui-grid-col-3">
@@ -88,23 +88,17 @@
 							</div>
 							<div class="ui-grid-col-12">
 								<p:inputText id="imputvalor"
-									value="#{chamadoController.chamado.valor}" />
+									value="#{faturamentoController.faturamento.valorTotal}" />
 							</div>
 						</div>
-						
-
-
-				
-
-
 
 						<div class="EmptyBox10"></div>
 
 						<p:commandButton value=" Salvar "
-							action="#{chamadoController.voltar()}" styleClass="CyanButton"
+							action="#{faturamentoController.salvar()}" styleClass="CyanButton"
 							style="float:right;" />
 						<p:commandButton value=" Calcular Faturamento "
-							action="#{faturamentoController.salvar()}" styleClass="CyanButton"
+							action="#{faturamentoController.calcular()}" styleClass="CyanButton"
 							style="float:right;" update="@all"/>
 
 

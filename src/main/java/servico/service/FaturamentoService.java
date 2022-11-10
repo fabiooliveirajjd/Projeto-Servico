@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import servico.DAO.FaturamentoDAO;
+import servico.entidade.Chamado;
 import servico.entidade.Faturamento;
 
 @Service
@@ -22,5 +23,11 @@ public class FaturamentoService {
 	public List<Faturamento> pesquisarTodosFaturamentos() {
 		return dao.pesquisarTodosFaturamentos();
 	}
+	
+	public List<Chamado> calcular(Faturamento faturamento) {
+		return dao.calcular(faturamento);
+	}
+
+
 
 }
