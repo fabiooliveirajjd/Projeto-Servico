@@ -27,6 +27,11 @@ public class FaturamentoService {
 	public List<Chamado> calcular(Faturamento faturamento) {
 		return dao.calcular(faturamento);
 	}
+	
+	public void excluir(Faturamento faturamento) {
+		dao.excluir(faturamento);
+		
+	}
 
 
 

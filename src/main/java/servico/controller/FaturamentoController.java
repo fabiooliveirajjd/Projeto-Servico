@@ -1,6 +1,7 @@
 package servico.controller;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import servico.service.TecnicoService;
 public class FaturamentoController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final String CONSULTAR = "/paginas/configurarFaturamento/pesquisarFaturamento.xhtml";
-//	private static final String INCLUIR = "/paginas/configurarFaturamento/incluirFaturamento.xhtml";
+	private static final String INCLUIR = "/paginas/configurarFaturamento/incluirFaturamento.xhtml";
 
 	private Faturamento faturamento;
 	private List<Faturamento> faturamentos;
@@ -51,10 +52,14 @@ public class FaturamentoController implements Serializable {
 	public void calcular() {
 
 //	idcliente idtecnico datainicio datafim
+		BigDecimal vatorTotal = new BigDecimal(0);
 
 		List<Chamado> listaChamados = faturamentoService.calcular(faturamento);
-		
+		for (Chamado item : listaChamados) {
+			vatorTotal = vatorTotal.add(item.getValor());
+		}
 
+		getFaturamento().setValorTotal(vatorTotal);
 	}
 
 	public String salvar() {
@@ -67,6 +72,32 @@ public class FaturamentoController implements Serializable {
 		faturamento = new Faturamento();
 		faturamentos = new ArrayList<>();
 	}
+
+	public void pesquisarTodosFaturamentos() {
+		faturamentos = new ArrayList<>();
+		faturamentos = faturamentoService.pesquisarTodosFaturamentos();
+
+//		for (Faturamento item : faturamentos) {
+//			item.setIdCliente(clienteService.pesquisarPorId(item.getIdCliente()));
+//			item.setIdTecnico(tecnicoService.pesquisarPorId(item.getIdTecnico()));
+//		}
+
+	}
+	
+	public String incluir() {
+		faturamento = new Faturamento();
+		faturamentos = new ArrayList<>();
+		return INCLUIR;
+	}
+	
+	public String excluir(Faturamento faturamento) {
+		faturamentoService.excluir(faturamento);
+		faturamento = new Faturamento();
+		pesquisarTodosFaturamentos();
+		return CONSULTAR;
+	}
+	
+	
 
 	public List<Faturamento> getFaturamentos() {
 		return faturamentos;

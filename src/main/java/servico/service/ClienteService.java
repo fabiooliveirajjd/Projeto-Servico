@@ -12,6 +12,7 @@ import servico.entidade.Cliente;
 @Service
 public class ClienteService {
 	
+	
 	@Inject
 	private ClienteDAO dao;
 	

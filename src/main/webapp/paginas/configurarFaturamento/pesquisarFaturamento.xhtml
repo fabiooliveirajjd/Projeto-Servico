@@ -60,8 +60,8 @@
 						<div class="EmptyBox5"></div>
 
 						
-						<p:commandButton value=" Novo " action="#{chamadoController.incluir()}"  styleClass="CyanButton" style="float:right;"  />
-						<p:commandButton value=" Pesquisar " action="#{chamadoController.pesquisarPorTecnicoEClinte()}" update="tableChamado" styleClass="CyanButton"  style="float:right;"  />
+						<p:commandButton value=" Novo " action="#{faturamentoController.incluir()}" icon="ui-icon-pencil"  styleClass="CyanButton" style="float:right;"  />
+						<p:commandButton value=" Pesquisar " action="#{faturamentoController.pesquisarTodosFaturamentos()}" update="tableChamado"  icon="ui-icon-circle-zoomout" styleClass="CyanButton"  style="float:right;"  />
 						
 					
 					<div class="EmptyBox10"></div>
@@ -70,55 +70,45 @@
 				
 							<div class="ContainerIndent">
 					
-									<p:dataTable id="tableChamado" var="chamado" paginator="true" 
+									<p:dataTable id="tableChamado" var="faturamento" paginator="true" 
 									rows="10" paginatorPosition="bottom" emptyMessage="Nenhum registro foi encontrado para os parâmetros informados."
-									value="#{chamadoController.chamados}" >
+									value="#{faturamentoController.faturamentos}" >
 										<f:facet name="header">
 		                                	Chamados
 		                            	</f:facet>
 								
-									    <p:column headerText="Cliente">
-									        <h:outputText value="#{chamado.nomeCliente}" />
-									    </p:column>
-									    
 									    <p:column headerText="Tecnico">
-									        <h:outputText value="#{chamado.nomeTecnico}" />
-									    </p:column>
-									 
-									    <p:column headerText="Prioridade">
-									        <h:outputText value="#{chamado.prioridade}" />
+									        <h:outputText value="#{faturamento.idCliente}" />
 									    </p:column>
 									    
-									    <p:column headerText="Status">
-									        <h:outputText value="#{chamado.status}" />
+									    <p:column headerText="Cliente">
+									        <h:outputText value="#{faturamento.idTecnico}" />
+									    </p:column>
+									   
+									   
+									    
+									     <p:column headerText="Data Inicial de faturamento">
+									        <p:calendar id="imputInicial" value="#{faturamento.dataInicioFaturamento}" pattern="dd/MM/yyyy" mask="true" disabled="true"  />
 									    </p:column>
 									    
-									     <p:column headerText="Data de abertura">
-									        <p:calendar id="imputInicial" value="#{chamado.dataAbertura}" pattern="dd/MM/yyyy" mask="true" disabled="true"  />
+									     <p:column headerText="Data fim de Faturamento">
+									        <p:calendar id="imputFecha" value="#{faturamento.dataFimFaturamento}" pattern="dd/MM/yyyy" mask="true" disabled="true"  />
 									    </p:column>
 									    
-									     <p:column headerText="Data de fechamento">
-									        <p:calendar id="imputFecha" value="#{chamado.dataFechamento}" pattern="dd/MM/yyyy" mask="true" disabled="true"  />
-									        
-									    </p:column>
-									    
-									     <p:column headerText="Título">
-									        <h:outputText value="#{chamado.titulo}" />
-									    </p:column>
-									    
-									     <p:column headerText="Valor">
-									        <h:outputText value="#{chamado.valor}" />
+									     <p:column headerText="Valor Total">
+									        <h:outputText value="#{faturamento.valorTotal}" />
 									    </p:column> 
 									    
 									   	
 										<p:column style="width:33px;text-align: center">
-											<p:commandButton action="#{chamadoController.redirecionaAlterar(chamado)}" icon=" ui-icon-pencil" title="Alterar Chamado"
+											<p:commandButton action="#{chamadoController.redirecionaAlterar(chamado)}" icon="ui-icon-document" title="Imprimir relatório"
 												 styleClass="BlueButton"/>
 										</p:column>
 										<p:column style="width:33px;text-align: center">
-											<p:commandButton action="#{chamadoController.excluir(chamado)}" icon=" ui-icon-trash" title="Excluir Chamado"
+											<p:commandButton action="#{faturamentoController.excluir(faturamento)}"
+										 icon=" ui-icon-trash" title="Excluir Faturamento"
 												immediate="true" update="@all"  ajax="false" styleClass="BlueDarkButton"/>
-										</p:column>
+										</p:column> 
 									 
 							</p:dataTable>
 						</div>
