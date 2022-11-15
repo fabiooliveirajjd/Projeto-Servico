@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Faturamento implements Serializable {
@@ -20,12 +21,12 @@ public class Faturamento implements Serializable {
 
 	@Column
 	private BigDecimal valorTotal;
+	
+	@Column
+	private Integer idCliente;
 
 	@Column
-	private Long idCliente;
-
-	@Column
-	private Long idTecnico;
+	private Integer idTecnico;
 
 	@Column
 	private Date dataInicioFaturamento;
@@ -33,11 +34,17 @@ public class Faturamento implements Serializable {
 	@Column
 	private Date dataFimFaturamento;
 
+	@Transient
+	private String nomeCliente;
+	@Transient
+	private String nomeTecnico;
+	
+	
 	public Faturamento() {
 		super();
 	}
 
-	public Faturamento(Integer idFaturamento, BigDecimal valorTotal, Long idCliente, Long idTecnico, 
+	public Faturamento(Integer idFaturamento, BigDecimal valorTotal, Integer idCliente, Integer idTecnico, 
 			Date dataInicioFaturamento, Date dataFimFaturamento) {
 		super();
 		this.idFaturamento = idFaturamento;
@@ -65,19 +72,19 @@ public class Faturamento implements Serializable {
 		this.valorTotal = valorTotal;
 	}
 
-	public Long getIdCliente() {
+	public Integer getIdCliente() {
 		return idCliente;
 	}
 
-	public void setIdCliente(Long idCliente) {
+	public void setIdCliente(Integer idCliente) {
 		this.idCliente = idCliente;
 	}
 
-	public Long getIdTecnico() {
+	public Integer getIdTecnico() {
 		return idTecnico;
 	}
 
-	public void setIdTecnico(Long idTecnico) {
+	public void setIdTecnico(Integer idTecnico) {
 		this.idTecnico = idTecnico;
 	}
 
@@ -97,5 +104,24 @@ public class Faturamento implements Serializable {
 	public void setDataFimFaturamento(Date dataFimFaturamento) {
 		this.dataFimFaturamento = dataFimFaturamento;
 	}
+
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+
+	public String getNomeTecnico() {
+		return nomeTecnico;
+	}
+
+	public void setNomeTecnico(String nomeTecnico) {
+		this.nomeTecnico = nomeTecnico;
+	}
+	
+	
+
 
 }

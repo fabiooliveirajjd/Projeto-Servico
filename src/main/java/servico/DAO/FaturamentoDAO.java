@@ -11,6 +11,8 @@ import java.util.List;
 
 import servico.entidade.Chamado;
 import servico.entidade.Faturamento;
+import servico.enuns.Prioridade;
+import servico.enuns.Status;
 
 public class FaturamentoDAO {
 
@@ -23,12 +25,12 @@ public class FaturamentoDAO {
 					"INSERT INTO Faturamento (id_Tecnico, id_Cliente, dataInicioFaturamento, dataFimFaturamento, valorTotal)"
 							+ " VALUES (?,?,?,?,?)");
 
-			ps.setLong(1, faturamento.getIdTecnico());
-			ps.setLong(2, faturamento.getIdCliente());
-			java.sql.Timestamp dataInicioFaturamento = new Timestamp(new Date().getTime());
-			ps.setTimestamp(3, dataInicioFaturamento);
-			java.sql.Timestamp dataFimFaturamento = new Timestamp(new Date().getTime());
-			ps.setTimestamp(4, dataFimFaturamento);
+			ps.setInt(1, faturamento.getIdTecnico());
+			ps.setInt(2, faturamento.getIdCliente());
+			java.sql.Date inicio = new java.sql.Date(faturamento.getDataInicioFaturamento().getTime());
+			ps.setDate(3, inicio);
+			java.sql.Date fim = new java.sql.Date(faturamento.getDataFimFaturamento().getTime());
+			ps.setDate(4, fim);
 			ps.setBigDecimal(5, faturamento.getValorTotal());
 
 			ps.executeUpdate();
@@ -97,8 +99,8 @@ public class FaturamentoDAO {
 				Faturamento faturamento = new Faturamento();
 
 				faturamento.setIdFaturamento(rs.getInt("idFaturamento"));
-				faturamento.setIdTecnico(rs.getLong("id_Tecnico"));
-				faturamento.setIdCliente(rs.getLong("id_Cliente"));
+				faturamento.setIdTecnico(rs.getInt("id_Tecnico"));
+				faturamento.setIdCliente(rs.getInt("id_Cliente"));
 				faturamento.setDataInicioFaturamento(rs.getDate("dataInicioFaturamento"));
 				faturamento.setDataFimFaturamento(rs.getDate("dataFimFaturamento"));
 				faturamento.setValorTotal(rs.getBigDecimal("valorTotal"));
@@ -142,4 +144,48 @@ public class FaturamentoDAO {
 
 		}
 	}
-}
+
+	public List<Faturamento> pesquisarPorDataInicioEFim(Faturamento fat) {
+		Connection con = null;
+		try {
+			con = ConectaPostgres.criarConexao();
+			PreparedStatement ps = null;
+
+			ps = con.prepareStatement("SELECT idFaturamento, id_Tecnico, id_Cliente, dataInicioFaturamento, dataFimFaturamento, valorTotal  " + "FROM faturamento "
+					+ "	where dataInicioFaturamento BETWEEN ? AND ? ");
+			
+			java.sql.Date dataInicio = new java.sql.Date(fat.getDataInicioFaturamento().getTime());
+			ps.setDate(1, dataInicio);
+			java.sql.Date dataFim = new java.sql.Date(fat.getDataFimFaturamento().getTime());
+			ps.setDate(2, dataFim);
+			ResultSet rs = ps.executeQuery();
+
+			List<Faturamento> lista = new ArrayList<>();
+			while (rs.next()) {
+				Faturamento faturamento = new Faturamento();
+
+				faturamento.setIdFaturamento(rs.getInt("idFaturamento"));
+				faturamento.setIdTecnico(rs.getInt("id_Tecnico"));
+				faturamento.setIdCliente(rs.getInt("id_Cliente"));
+				faturamento.setDataInicioFaturamento(rs.getDate("dataInicioFaturamento"));
+				faturamento.setDataFimFaturamento(rs.getDate("dataFimFaturamento"));
+				faturamento.setValorTotal(rs.getBigDecimal("valorTotal"));
+
+				lista.add(faturamento);
+			}
+			return lista;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	}
+
+

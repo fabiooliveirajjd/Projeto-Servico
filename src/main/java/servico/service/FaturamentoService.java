@@ -33,6 +33,20 @@ public class FaturamentoService {
 		
 	}
 
+	public List<Faturamento> pesquisarPorDataInicioEFim(Faturamento faturamento) {
+		return dao.pesquisarPorDataInicioEFim(faturamento);
+	}
+	
+	
+	
+	
+
+//	public List<Chamado> pesquisarPorTecnico(Integer idTecnico) {
+//		return dao.pesquisarPorTecnico(idTecnico);
+//		
+//	}
+
+
 
 
 }

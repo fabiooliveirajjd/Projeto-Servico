@@ -30,39 +30,35 @@
 					<div class="ui-grid ui-grid-responsive">
 				
 					<div class="EmptyBox5"></div>
-						
-					<!-- Combo tipo de informativo -->
-					<!-- <div class="ui-grid-row">
+					
+				  	<div class="ui-grid-row">
 						<div class="ui-grid-col-3">
-							<p:outputLabel id="labelNome" value="Pesquisar chamado por Cliente: "  />
+							<p:outputLabel id="labelNomn" value="Pesquisar Faturamento por Data Inicial: "  />
 						</div>
 						<div class="ui-grid-col-3">
-							<p:inputText id="imputNome" value="#{chamadoController.cliente.nome}"  />
+						<p:outputLabel id="labelast1" value="* "  />
+							<p:calendar  value="#{faturamentoController.faturamento.dataInicioFaturamento}" required="false"/>
 						</div>
-					</div> -->
+					</div> 
 					
 					<div class="ui-grid-row">
 						<div class="ui-grid-col-3">
-							<p:outputLabel id="labelNom" value="Pesquisar Faturamento por Tecnico: "  />
+							<p:outputLabel id="labelNom" value="Pesquisar Faturamento por Data Final: "  />
 						</div>
 						<div class="ui-grid-col-3">
-							<p:selectOneMenu id="selectec"
-									value="#{chamadoController.chamado.idTecnico}"
-									style="width:208px">
-									<f:selectItem itemLabel="Selecione" itemValue="" />
-									<f:selectItems value="#{chamadoController.tecnicos}" var="t"
-										itemLabel="#{t.nome}" itemValue="#{t.idTecnico}" />
-								</p:selectOneMenu>
+							<p:outputLabel id="labelast" value="* "  />
+							<p:calendar  value="#{faturamentoController.faturamento.dataFimFaturamento}" required="false"/>
 						</div>
-					</div>
+					</div> 
 					
 					
 						<div class="EmptyBox5"></div>
 
 						
 						<p:commandButton value=" Novo " action="#{faturamentoController.incluir()}" icon="ui-icon-pencil"  styleClass="CyanButton" style="float:right;"  />
-						<p:commandButton value=" Pesquisar " action="#{faturamentoController.pesquisarTodosFaturamentos()}" update="tableChamado"  icon="ui-icon-circle-zoomout" styleClass="CyanButton"  style="float:right;"  />
-						
+						<p:commandButton value=" Pesquisar " action="#{faturamentoController.pesquisarPorDataInicioEFim()}" update="tableChamado"  
+						icon="ui-icon-circle-zoomout" styleClass="CyanButton"  style="float:right;"  />
+						<!-- onclick="PF('dlg2').show();"  -->
 					
 					<div class="EmptyBox10"></div>
 					
@@ -78,11 +74,11 @@
 		                            	</f:facet>
 								
 									    <p:column headerText="Tecnico">
-									        <h:outputText value="#{faturamento.idCliente}" />
+									        <h:outputText value="#{faturamento.nomeTecnico}" />
 									    </p:column>
 									    
 									    <p:column headerText="Cliente">
-									        <h:outputText value="#{faturamento.idTecnico}" />
+									        <h:outputText value="#{faturamento.nomeCliente}" />
 									    </p:column>
 									   
 									   
@@ -115,7 +111,12 @@
 					</p:panel>								
 				</div>
 	 		</div>						
-		  </p:panel>							
+		  </p:panel>		
+		  
+		  <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+			    <h:outputText value="This is a Modal Dialog." />
+			</p:dialog> 
+		  					
 	   </div>
 	</ui:define>
 </ui:composition>

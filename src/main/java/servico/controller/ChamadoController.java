@@ -71,13 +71,6 @@ public class ChamadoController implements Serializable {
 		return CONSULTAR;
 	}
 
-	public void limpar() {
-		chamado = new Chamado();
-		chamados = new ArrayList<>();
-		prioridade = null;
-		status = null;
-
-	}
 
 	public String excluir(Chamado chamado) {
 		chamadoService.excluir(chamado);
@@ -115,6 +108,16 @@ public class ChamadoController implements Serializable {
 		
 	}
 	
+	
+	public void limpar() {
+		chamado = new Chamado();
+		chamados = new ArrayList<>();
+		prioridade = null;
+		status = null;
+
+	}
+
+	
 	public void pesquisarTodosChamados() {
 		chamados = new ArrayList<>();
 		chamados = chamadoService.pesquisarTodosChamados();
@@ -124,7 +127,7 @@ public class ChamadoController implements Serializable {
 			item.setNomeTecnico(tecnicoService.pesquisarPorId(item.getIdTecnico()));
 		}
 	}
-	
+
 	public void pesquisarPorTecnicoEClinte() {
 		
 //		chamado.setIdCliente(clienteService.pesquisarClientePorNome(cliente));

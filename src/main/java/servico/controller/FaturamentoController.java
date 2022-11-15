@@ -14,6 +14,7 @@ import servico.entidade.Chamado;
 import servico.entidade.Cliente;
 import servico.entidade.Faturamento;
 import servico.entidade.Tecnico;
+import servico.service.ChamdoService;
 import servico.service.ClienteService;
 import servico.service.FaturamentoService;
 import servico.service.TecnicoService;
@@ -24,7 +25,10 @@ public class FaturamentoController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final String CONSULTAR = "/paginas/configurarFaturamento/pesquisarFaturamento.xhtml";
 	private static final String INCLUIR = "/paginas/configurarFaturamento/incluirFaturamento.xhtml";
-
+	
+	
+	private Chamado chamado = new Chamado();
+	private List<Chamado> chamados;
 	private Faturamento faturamento;
 	private List<Faturamento> faturamentos;
 	private List<Cliente> clientes = new ArrayList<Cliente>();
@@ -32,6 +36,9 @@ public class FaturamentoController implements Serializable {
 	private Cliente cliente;
 	private Tecnico tecnico;
 
+	
+	@Inject
+	private ChamdoService chamadoService;
 	@Inject
 	private FaturamentoService faturamentoService;
 	@Inject
@@ -41,6 +48,8 @@ public class FaturamentoController implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		setChamado(new Chamado());
+		setChamados(new ArrayList<>());
 		faturamento = new Faturamento();
 		faturamentos = new ArrayList<>();
 		clientes = clienteService.pesquisarTodosClientes();
@@ -50,8 +59,7 @@ public class FaturamentoController implements Serializable {
 	}
 
 	public void calcular() {
-
-//	idcliente idtecnico datainicio datafim
+		
 		BigDecimal vatorTotal = new BigDecimal(0);
 
 		List<Chamado> listaChamados = faturamentoService.calcular(faturamento);
@@ -63,26 +71,56 @@ public class FaturamentoController implements Serializable {
 	}
 
 	public String salvar() {
+
 		faturamentoService.salvar(faturamento);
 		limpar();
 		return CONSULTAR;
 	}
 
 	public void limpar() {
+		setChamado(new Chamado());
+		setChamados(new ArrayList<>());
 		faturamento = new Faturamento();
 		faturamentos = new ArrayList<>();
+		clientes = clienteService.pesquisarTodosClientes();
+		tecnicos = tecnicoService.pesquisarTodosTecnicos();
+		cliente = new Cliente();
+		tecnico = new Tecnico();
+		
 	}
 
 	public void pesquisarTodosFaturamentos() {
 		faturamentos = new ArrayList<>();
 		faturamentos = faturamentoService.pesquisarTodosFaturamentos();
-
-//		for (Faturamento item : faturamentos) {
-//			item.setIdCliente(clienteService.pesquisarPorId(item.getIdCliente()));
-//			item.setIdTecnico(tecnicoService.pesquisarPorId(item.getIdTecnico()));
-//		}
-
 	}
+	
+	public void pesquisarPorDataInicioEFim (){
+		
+		Boolean verifica = true;
+		if(faturamento.getDataInicioFaturamento() == null ) {
+			verifica = false;
+		}
+		if(faturamento.getDataFimFaturamento() == null ) {
+			verifica = false;
+		}
+
+		if(verifica) {
+		
+			faturamentos = new ArrayList<>();
+			faturamentos = faturamentoService.pesquisarPorDataInicioEFim(faturamento);
+			
+			for (Faturamento item : faturamentos) {
+	
+				item.setNomeCliente(clienteService.pesquisarPorId(item.getIdCliente()));
+				item.setNomeTecnico(tecnicoService.pesquisarPorId(item.getIdTecnico()));
+			}
+		}else {
+			//lancar msg de obrigadorio
+		}
+		
+		
+	}
+		
 	
 	public String incluir() {
 		faturamento = new Faturamento();
@@ -93,7 +131,7 @@ public class FaturamentoController implements Serializable {
 	public String excluir(Faturamento faturamento) {
 		faturamentoService.excluir(faturamento);
 		faturamento = new Faturamento();
-		pesquisarTodosFaturamentos();
+		pesquisarPorDataInicioEFim();
 		return CONSULTAR;
 	}
 	
@@ -155,6 +193,26 @@ public class FaturamentoController implements Serializable {
 	public void setTecnico(Tecnico tecnico) {
 		this.tecnico = tecnico;
 
+	}
+
+	public Chamado getChamado() {
+		return chamado;
+		
+	}
+
+	public void setChamado(Chamado chamado) {
+		this.chamado = chamado;
+		
+	}
+
+	public List<Chamado> getChamados() {
+		return chamados;
+		
+	}
+
+	public void setChamados(List<Chamado> chamados) {
+		this.chamados = chamados;
+		
 	}
 
 }
