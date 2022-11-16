@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml"
+	xmlns:sec="http://www.springframework.org/security/jsf/tags"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content">
+		<style type="text/css">
+.ui-panel {
+	margin-top: 20px
+}
+</style>
+
+		<div class="ContainerIndent">
+
+			<p:panel id="panelConsulta">
+				<div class="Container">
+					<div class="Container100">
+						<div class="ContainerIndent">
+							<h:outputText value="Incluir Estoque"
+								styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
+						</div>
+						<div class="EmptyBox10"></div>
+
+					</div>
+
+					<div class="ui-grid ui-grid-responsive">
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelNome" value="Tipo: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:selectOneMenu id="selectTec"
+									value="#{estoqueController.tipo}" style="width:208px">
+									<f:selectItem itemLabel="Selecione" itemValue="" />
+									<f:selectItems value="#{estoqueController.tipos}" var="p"
+										itemLabel="#{p.descricao}" itemValue="#{p}" />
+								</p:selectOneMenu>
+							</div>
+						</div>
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="desc" value="Descrição: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:inputText id="desc1"
+									value="#{estoqueController.estoque.descricao}" />
+							</div>
+						</div>
+
+
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labeltec" value="Quantidade: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:inputText id="imputendereco"
+									value="#{estoqueController.estoque.quantidade}" />
+							</div>
+						</div>
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelendere" value="Valor da Compra: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:inputText id="imputendere"
+									value="#{estoqueController.estoque.valorCompra}" />
+							</div>
+						</div>
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelenderec"
+									value="Data da Compra: " />
+							</div>
+							<div class="ui-grid-col-12">
+								<p:calendar
+									value="#{estoqueController.estoque.dataCompra}" />
+							</div>
+						</div>
+
+
+						<div class="EmptyBox10"></div>
+
+						<p:commandButton value=" Voltar "
+							action="#{estoqueController.voltar()}" styleClass="CyanButton"
+							style="float:right;" />
+						<p:commandButton value=" Salvar "
+							action="#{estoqueController.salvar()}" styleClass="CyanButton"
+							style="float:right;" update="@all" />
+
+
+					</div>
+				</div>
+			</p:panel>
+
+		</div>
+	</ui:define>
+</ui:composition>

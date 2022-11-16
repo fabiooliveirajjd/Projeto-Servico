@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml"
+	xmlns:sec="http://www.springframework.org/security/jsf/tags"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="content">
+		<style type="text/css">
+.ui-panel {
+	margin-top: 20px
+}
+</style>
+
+		<div class="ContainerIndent">
+
+			<p:panel id="panelConsulta">
+				<div class="Container">
+					<div class="Container100">
+						<div class="ContainerIndent">
+							<h:outputText value="Lista de Estoque"
+								styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
+						</div>
+						<div class="EmptyBox10"></div>
+
+					</div>
+
+					<div class="ui-grid ui-grid-responsive">
+
+						<div class="EmptyBox5"></div>
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelNom"
+									value="Pesquisar Estoque por Quantidade: " />
+							</div>
+
+
+
+							<div class="ui-grid-col-3">
+								<p:inputText id="imputz"
+									value="#{estoqueController.estoque.quantidade}" />
+							</div>
+						</div>
+
+					<div class="EmptyBox5"></div>
+					<p:commandButton value=" Novo "
+						action="#{estoqueController.incluir()}" icon="ui-icon-pencil"
+						styleClass="CyanButton" style="float:right;" />
+					<p:commandButton value=" Pesquisar "
+						action="#{estoqueController.pesquisarTodoEstoque()}"
+						update="tableEstoque" icon="ui-icon-circle-zoomout"
+						styleClass="CyanButton" style="float:right;" />
+
+
+					<div class="EmptyBox10"></div>
+
+					<p:panel id="panelResultado">
+
+						<div class="ContainerIndent">
+
+							<p:dataTable id="tableEstoque" var="estoque" paginator="true"
+								rows="10" paginatorPosition="bottom"
+								emptyMessage="Nenhum registro foi encontrado para os parâmetros informados."
+								value="#{estoqueController.estoques}">
+								<f:facet name="header">
+		                                	Chamados
+		                            	</f:facet>
+
+								<p:column headerText="Tipo">
+									<h:outputText value="#{estoque.tipo}" />
+								</p:column>
+
+								<p:column headerText="Quantidade">
+									<h:outputText value="#{estoque.quantidade}" />
+								</p:column>
+
+								<p:column headerText="Descrição">
+									<h:outputText value="#{estoque.descricao}" />
+								</p:column>
+
+								<p:column headerText="Valor da Compra">
+									<h:outputText value="#{estoque.valorCompra}" />
+								</p:column>
+
+								<p:column headerText="Data da Compra">
+									<p:calendar id="imputInicial" value="#{estoque.dataCompra}"
+										pattern="dd/MM/yyyy" mask="true" disabled="true" />
+								</p:column>
+
+								<p:column style="width:33px;text-align: center">
+									<p:commandButton
+										action="#{estoqueController.redirecionaAlterar(estoque)}"
+										icon=" ui-icon-pencil" title="Alterar Estoque"
+										styleClass="BlueButton" />
+								</p:column>
+								<p:column style="width:33px;text-align: center">
+									<p:commandButton action="#{estoqueController.excluir(estoque)}"
+										icon=" ui-icon-trash" title="Excluir Chamado" immediate="true"
+										update="@all" ajax="false" styleClass="BlueDarkButton" />
+								</p:column>
+
+							</p:dataTable>
+						</div>
+					</p:panel>
+				</div>
+		</div>
+		</p:panel>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -215,4 +215,14 @@ public class FaturamentoController implements Serializable {
 		
 	}
 
+	public ChamdoService getChamadoService() {
+		return chamadoService;
+		
+	}
+
+	public void setChamadoService(ChamdoService chamadoService) {
+		this.chamadoService = chamadoService;
+		
+	}
+
 }

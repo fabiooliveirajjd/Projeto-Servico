@@ -51,6 +51,7 @@ public class Chamado implements Serializable{
 	
 	@Transient
 	private String nomeCliente;
+	
 	@Transient
 	private String nomeTecnico;
 	

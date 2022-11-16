@@ -9,89 +9,103 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 	<ui:define name="content">
-<style type="text/css">
-	.ui-panel {
-		margin-top: 20px
-	}
+		<style type="text/css">
+.ui-panel {
+	margin-top: 20px
+}
 </style>
 
-	<div class="ContainerIndent">
+		<div class="ContainerIndent">
 
-		<p:panel id="panelConsulta">
+			<p:panel id="panelConsulta">
 				<div class="Container">
 					<div class="Container100">
 						<div class="ContainerIndent">
-							<h:outputText value="Manter Tecnico" styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
+							<h:outputText value="Manter Tecnico"
+								styleClass="icon-title FontBold Fs18 hardblue"></h:outputText>
 						</div>
-					<div class="EmptyBox10"></div>
+						<div class="EmptyBox10"></div>
 
 					</div>
-					
+
 					<div class="ui-grid ui-grid-responsive">
-				
-					<div class="EmptyBox5"></div>
-						
-					<!-- Combo tipo de informativo -->
-					<div class="ui-grid-row">
-						<div class="ui-grid-col-3">
-							<p:outputLabel id="labelNome" value="Nome Tecnico: "  />
-						</div>
-						<div class="ui-grid-col-3">
-							<p:inputText id="imputNome" value="#{tecnicoController.tecnico.nome}"  />
-						</div>
-					</div>
+
 						<div class="EmptyBox5"></div>
 
-						
-						<p:commandButton value=" Novo " action="#{tecnicoController.incluir()}" icon="ui-icon-pencil"  styleClass="CyanButton" style="float:right;"  />
-						<p:commandButton value=" Pesquisar " action="#{tecnicoController.pesquisarTodosTecnicos()}" update="tableTecnico" icon="ui-icon-circle-zoomout" styleClass="CyanButton"  style="float:right;"  />
-						
-					
-					<div class="EmptyBox10"></div>
-					
+
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-3">
+								<p:outputLabel id="labelNome" value="Nome Tecnico: " />
+							</div>
+
+							<div class="ui-grid-col-3">
+								<p:inputText id="imputNome"
+									value="#{tecnicoController.tecnico.nome}" />
+							</div>
+						</div>
+
+
+						<div class="EmptyBox5"></div>
+						<p:commandButton value=" Novo "
+							action="#{tecnicoController.incluir()}" icon="ui-icon-pencil"
+							styleClass="CyanButton" style="float:right;" />
+						<p:commandButton value=" Pesquisar "
+							action="#{tecnicoController.pesquisarTodosTecnicos()}"
+							update="tableTecnico" icon="ui-icon-circle-zoomout"
+							styleClass="CyanButton" style="float:right;" />
+
+
+						<div class="EmptyBox10"></div>
+
 						<p:panel id="panelResultado">
-				
+
 							<div class="ContainerIndent">
-					
-									<p:dataTable id="tableTecnico" var="tecnico" paginator="true" 
-									rows="10" paginatorPosition="bottom" emptyMessage="Nenhum registro foi encontrado para os parâmetros informados."
-									value="#{tecnicoController.tecnicos}" >
-										<f:facet name="header">
+
+								<p:dataTable id="tableTecnico" var="tecnico" paginator="true"
+									rows="10" paginatorPosition="bottom"
+									emptyMessage="Nenhum registro foi encontrado para os parâmetros informados."
+									value="#{tecnicoController.tecnicos}">
+									<f:facet name="header">
 		                                	Dados do Tecnico
 		                            	</f:facet>
-								
-									    <p:column headerText="Nome">
-									        <h:outputText value="#{tecnico.nome}" />
-									    </p:column>
-									    
-									    <p:column headerText="CPF">
-									        <h:outputText value="#{tecnico.cpf}" />
-									    </p:column>
-									 
-									    <p:column headerText="Email">
-									        <h:outputText value="#{tecnico.email}" />
-									    </p:column>
-									    
-									    <p:column style="width:33px;text-align: center">
-											<p:commandButton id="btnAlterar" action="#{tecnicoController.redirecionaAlterar(tecnico)}"  icon="ui-icon-pencil" title="Alterar Tecnico"
-											  styleClass="BlueButton" />
-										</p:column>
-										<p:column style="width:33px;text-align: center">
-											<p:commandButton action="#{tecnicoController.excluir(tecnico)}" icon=" ui-icon-trash" title="Excluir Tecnico"
-												immediate="true" update="@all"  ajax="false" styleClass="BlueDarkButton"/>
-										</p:column>
-										 
-									</p:dataTable>
-								</div>
-							</p:panel>
-									
-								</div>
+
+									<p:column headerText="Nome">
+										<h:outputText value="#{tecnico.nome}" />
+									</p:column>
+
+									<p:column headerText="CPF">
+										<h:outputText value="#{tecnico.cpf}" />
+									</p:column>
+
+									<p:column headerText="Email">
+										<h:outputText value="#{tecnico.email}" />
+									</p:column>
+
+									<p:column style="width:33px;text-align: center">
+										<p:commandButton id="btnAlterar"
+											action="#{tecnicoController.redirecionaAlterar(tecnico)}"
+											icon="ui-icon-pencil" title="Alterar Tecnico"
+											styleClass="BlueButton" />
+									</p:column>
+									<p:column style="width:33px;text-align: center">
+										<p:commandButton
+											action="#{tecnicoController.excluir(tecnico)}"
+											icon=" ui-icon-trash" title="Excluir Tecnico"
+											immediate="true" update="@all" ajax="false"
+											styleClass="BlueDarkButton" />
+									</p:column>
+
+								</p:dataTable>
 							</div>
-							
-		</p:panel>
-				
-	
-			
-	</div>
+						</p:panel>
+
+					</div>
+				</div>
+
+			</p:panel>
+
+
+
+		</div>
 	</ui:define>
 </ui:composition>
