@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 
 import servico.entidade.Tecnico;
-import servico.entidade.Tecnico;
 
 public class TecnicoDAO {
 
