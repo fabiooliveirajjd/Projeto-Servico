@@ -32,7 +32,7 @@ public enum Prioridade {
 			}
 
 		}
-		throw new IllegalArgumentException("Prioridade inválodo");
+		throw new IllegalArgumentException("Prioridade inválido");
 	}
 
 }

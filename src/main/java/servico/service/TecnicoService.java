@@ -13,18 +13,17 @@ import servico.entidade.Tecnico;
 @Service
 public class TecnicoService {
 	
-	
 	@Inject
 	private TecnicoDAO dao;
 	
-	public void salvar (Tecnico tecnico) {
+    public void salvar (Tecnico tecnico) {
 		dao.salvar(tecnico);	
 	}
 	public void excluir(Tecnico tecnico) {
 		dao.excluir(tecnico);
 	}
-	
-	public void alterar(Tecnico tecnico) {
+
+  public void alterar(Tecnico tecnico) {
 		dao.alterar(tecnico);
 	}
 
