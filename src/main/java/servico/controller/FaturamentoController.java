@@ -36,7 +36,6 @@ public class FaturamentoController implements Serializable {
 	private Cliente cliente;
 	private Tecnico tecnico;
 
-	
 	@Inject
 	private ChamdoService chamadoService;
 	@Inject
